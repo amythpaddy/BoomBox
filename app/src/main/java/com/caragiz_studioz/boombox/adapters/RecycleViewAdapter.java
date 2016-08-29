@@ -24,12 +24,12 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<AlbumCardHolder> {
 
     @Override
     public void onBindViewHolder(AlbumCardHolder holder, int position) {
-        holder.text.setText(SongInfo.trackInfo.get(position).getAlbum());
+        holder.text.setText(SongInfo.albumInfo.get(position).getAlbumName());
 
     }
 
     @Override
     public int getItemCount() {
-        return SongInfo.trackInfo.size();
+        return SongInfo.albumInfo.size();
     }
 }

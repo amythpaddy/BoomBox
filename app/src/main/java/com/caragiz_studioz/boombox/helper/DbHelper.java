@@ -21,6 +21,7 @@ public class DbHelper {
             int artistCol = musicCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
             int albumCol = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
             int pathCol = musicCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
+            //int image = musicCursor.getColumnIndex(MediaStore.Audio.Albums.Al)
 
             do {
                 SongInfo.addTrackInfo(musicCursor.getLong(idCol) , musicCursor.getString(titleCol) , musicCursor.getString(artistCol) , musicCursor.getString(albumCol) , musicCursor.getString(pathCol));
