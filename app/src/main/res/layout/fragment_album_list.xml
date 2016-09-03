@@ -10,4 +10,4 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context="com.caragiz_studioz.boombox.fragments.AlbumFragment"
-    tools:listitem="@layout/fragment_album" />
+    tools:listitem="@layout/player_fragment" />

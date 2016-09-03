@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailedAlbumActivity"/>
+        <activity android:name=".PlayerDetailed" />
         <service android:name=".services.PlayerService"
             android:enabled="true" />
     </application>

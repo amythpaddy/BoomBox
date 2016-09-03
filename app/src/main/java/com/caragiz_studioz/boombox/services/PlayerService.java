@@ -2,6 +2,7 @@ package com.caragiz_studioz.boombox.services;
 
 import android.app.Service;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,8 +14,8 @@ import com.caragiz_studioz.boombox.helper.PlayHelper;
 /**
  * Created by caragiz on 23-07-2016.
  */
-public class PlayerService extends Service{
-    TextView tv;
+public class PlayerService extends Service implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener {
+    x
     Intent i = new Intent("updateText");
     @Nullable
     @Override
@@ -48,4 +49,18 @@ public class PlayerService extends Service{
     }
 
 
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+
+    }
+
+    @Override
+    public boolean onError(MediaPlayer mp, int what, int extra) {
+        return false;
+    }
+
+    @Override
+    public void onPrepared(MediaPlayer mp) {
+
+    }
 }

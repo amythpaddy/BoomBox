@@ -2,8 +2,12 @@ package com.caragiz_studioz.boombox;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.Pair;
+import android.view.View;
 import android.view.Window;
 import android.widget.AbsListView;
 import android.widget.ImageView;
@@ -21,7 +25,7 @@ import com.caragiz_studioz.boombox.dataObjects.SongInfo;
 /**
  * Created by caragiz on 24-08-2016.
  */
-public class DetailedAlbumActivity extends Activity {
+public class DetailedAlbumActivity extends AppCompatActivity {
 
     ImageView albumArt;
     TextView albumName;
@@ -35,6 +39,7 @@ public class DetailedAlbumActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        // getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setEnterTransition(null);
         setContentView(R.layout.detailedcardview);
 
         albumArt = (ImageView)findViewById(R.id.albumArt);
@@ -80,6 +85,19 @@ public class DetailedAlbumActivity extends Activity {
             Log.i("Visible Item Count" , ":"+visibleItemCount);
             Log.i("Total Item Counte" , ":"+totalItemCount);
         }
+    }
+
+    public void onLayoutClick(View view) {
+        Log.i("Status :", "Player Touched");
+        Activity activity = this;
+        Toast.makeText(activity, "Player touched", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(activity, PlayerDetailed.class);
+
+        //View view= linearLayoutManager.findViewByPosition(GlobalResource.albumCardPosition);
+        //ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity , Pair.create(albumArt, "albumartplayer"), Pair.create(trackName , "trackname") , Pair.create(playButton , "playbutton"));
+        //ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity , GlobalResource.albumArt , "albumart");
+        //activity.startActivity(intent , options.toBundle());
     }
 }
 
