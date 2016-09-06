@@ -3,6 +3,7 @@ package com.caragiz_studioz.boombox;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -46,6 +47,11 @@ public class DetailedAlbumActivity extends AppCompatActivity {
         albumName = (TextView) findViewById(R.id.albumName);
         trackListView = (ListView)findViewById(R.id.tracksListView);
         albumName.setText(SongInfo.albumInfo.get(GlobalResource.albumCardPosition).getAlbumName());
+        Drawable albumArtDrawable = SongInfo.albumInfo.get(GlobalResource.albumCardPosition).getAlbumArt();
+        if (albumArtDrawable != null) {
+            albumArt.setImageDrawable(albumArtDrawable);
+
+        }
 
         trackListView.setAdapter(new TrackListAdapter(this ));
         trackListView.setOnScrollListener(new ScrollListener());

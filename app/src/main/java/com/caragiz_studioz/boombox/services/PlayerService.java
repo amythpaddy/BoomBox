@@ -15,7 +15,7 @@ import com.caragiz_studioz.boombox.helper.PlayHelper;
  * Created by caragiz on 23-07-2016.
  */
 public class PlayerService extends Service implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener {
-    x
+
     Intent i = new Intent("updateText");
     @Nullable
     @Override

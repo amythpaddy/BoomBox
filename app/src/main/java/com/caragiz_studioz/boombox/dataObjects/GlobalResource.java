@@ -1,5 +1,6 @@
 package com.caragiz_studioz.boombox.dataObjects;
 
+import android.content.ContentResolver;
 import android.media.Image;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,6 +10,8 @@ import android.widget.TextView;
  */
 public class GlobalResource {
     public static int albumCardPosition;
-    public static TextView albumName;
-    public static ImageView albumArt;
+    public static boolean isPlaying;
+    public static boolean repeat;
+    public static boolean shuffle;
+    public static ContentResolver contentResolver;
 }

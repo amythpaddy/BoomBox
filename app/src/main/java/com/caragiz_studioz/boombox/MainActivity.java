@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.caragiz_studioz.boombox.adapters.RecycleViewAdapter;
 import com.caragiz_studioz.boombox.adapters.TrackListAdapter;
+import com.caragiz_studioz.boombox.dataObjects.GlobalResource;
 import com.caragiz_studioz.boombox.dataObjects.SongInfo;
 import com.caragiz_studioz.boombox.dataObjects.TrackData;
 import com.caragiz_studioz.boombox.helper.DbHelper;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         albumArt = (ImageView)findViewById(R.id.albumArt);
         albumName = (TextView)findViewById(R.id.albumName);
+        GlobalResource.contentResolver = getContentResolver();
 
         int permissionChk = ContextCompat.checkSelfPermission(this , Manifest.permission.READ_EXTERNAL_STORAGE);
         if(!checkPermission()){

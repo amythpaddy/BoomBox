@@ -1,5 +1,6 @@
 package com.caragiz_studioz.boombox.adapters;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,10 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<AlbumCardHolder> {
     @Override
     public void onBindViewHolder(AlbumCardHolder holder, int position) {
         holder.text.setText(SongInfo.albumInfo.get(position).getAlbumName());
+
+        if (SongInfo.albumInfo.get(position).getAlbumArt() != null)
+            holder.image.setImageDrawable(SongInfo.albumInfo.get(position).getAlbumArt());
+
 
     }
 
