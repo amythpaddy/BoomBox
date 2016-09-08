@@ -1,5 +1,7 @@
 package com.caragiz_studioz.boombox.dataObjects;
 
+import android.graphics.drawable.Drawable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class TrackData{
     private String artist;
     private String album;
     private String path;
-    private String image;
+    private Drawable albumArt;
 
     private List<String> albumList = new ArrayList<>();
     private List<String> artistList = new ArrayList<>();
@@ -48,6 +50,14 @@ public class TrackData{
     }
 
     public String getPath() { return path; }
+
+    public void setAlbumArt(Drawable albumArt) {
+        this.albumArt = albumArt;
+    }
+
+    public Drawable getAlbumArt() {
+        return albumArt;
+    }
 
     public List<String> getAlbumList() {
         return albumList;

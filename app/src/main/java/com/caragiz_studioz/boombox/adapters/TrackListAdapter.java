@@ -107,6 +107,7 @@ public class TrackListAdapter extends BaseAdapter implements DialogInterface.OnC
         @Override
         public void onClick(View v) {
             Toast.makeText(activity.getApplicationContext() , "List selected at:"+mposition , Toast.LENGTH_LONG).show();
+            GlobalResource.setCurrentSong(trackDataList.get(mposition));
         }
     }
 }
