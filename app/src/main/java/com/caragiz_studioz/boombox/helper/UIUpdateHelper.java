@@ -74,12 +74,13 @@ public class UIUpdateHelper {
         Log.i("albumArtListener Size:", ":" + albumArts.size());
         Log.i("albumArtListener Size:", ":" + progressBars.size());
         Log.i("albumArtListener Size:", ":" + seekBars.size());
+        if(tempTrackData != null)
         updateAllUI(tempTrackData, tempTrackData.getAlbumArt());
     }
 
-    public static void addUpdateListenerFor(RelativeLayout relativeLayout, TextView trackName, TextView albumName, TextView artistName, SeekBar seekBar) {
-        if (relativeLayout != null && !relativeLayouts.contains(relativeLayout))
-            relativeLayouts.add(relativeLayout);
+    public static void addUpdateListenerFor(ImageView albumArt, TextView trackName, TextView albumName, TextView artistName, SeekBar seekBar) {
+        if (albumArt != null && !albumArts.contains(albumArt))
+            albumArts.add(albumArt);
 
         if (trackName != null && !trackNames.contains(trackName))
             trackNames.add(trackName);
@@ -93,6 +94,7 @@ public class UIUpdateHelper {
         if (seekBar != null && !seekBars.contains(seekBar))
             seekBars.add(seekBar);
 
+        if(tempTrackData != null)
         updateAllUI(tempTrackData, tempTrackData.getAlbumArt());
 
         Log.i("LayoutListener Size:", ":" + relativeLayouts.size());

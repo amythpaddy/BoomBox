@@ -22,6 +22,7 @@ import com.caragiz_studioz.boombox.adapters.TrackListAdapter;
 import com.caragiz_studioz.boombox.dataObjects.AlbumData;
 import com.caragiz_studioz.boombox.dataObjects.GlobalResource;
 import com.caragiz_studioz.boombox.dataObjects.SongInfo;
+import com.caragiz_studioz.boombox.helper.ResizeAnimationHelper;
 
 /**
  * Created by caragiz on 24-08-2016.
@@ -35,6 +36,8 @@ public class DetailedAlbumActivity extends AppCompatActivity {
     static int minVisibleItem = 10000;
     static int prevFirstVisibleItem = 0;
     static boolean shrinked;
+
+    ResizeAnimationHelper resizeAnimationHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,36 +61,51 @@ public class DetailedAlbumActivity extends AppCompatActivity {
     }
 
     class ScrollListener implements AbsListView.OnScrollListener{
+        private int visibleItemCount;
+
         @Override
         public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-        }
-
-        @Override
-        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            minVisibleItem = minVisibleItem > visibleItemCount ? visibleItemCount : minVisibleItem;
             Log.i("Prev First Visible Item" , ":"+prevFirstVisibleItem);
             Log.i("Shrinked" , ":"+shrinked);
-            if((firstVisibleItem < prevFirstVisibleItem && shrinked) || (firstVisibleItem == 0 && shrinked)){
-                shrinked = false;
+            if((prevFirstVisibleItem > 0 &&  shrinked)){
+                resizeAnimationHelper = new ResizeAnimationHelper(albumArt , albumArt.getMaxHeight() , albumArt.getMaxHeight()+350);
+                resizeAnimationHelper.setDuration(1500);
+                albumArt.startAnimation(resizeAnimationHelper);
+
+/*                shrinked = false;
                 int width = albumArt.getWidth();
                 int height = 600;
                 RelativeLayout.LayoutParams parms = new RelativeLayout.LayoutParams(width,height);
                 albumArt.setLayoutParams(parms);
             }
-            else if(minVisibleItem != visibleItemCount && firstVisibleItem != 0 && !shrinked){
+            else if(minVisibleItem != visibleItemCount && prevFirstVisibleItem != 0 && !shrinked){
+                resizeAnimationHelper = new ResizeAnimationHelper(albumArt , albumArt.getHeight() , albumArt.getMaxHeight()-350);
+                resizeAnimationHelper.setDuration(1500);
+                albumArt.startAnimation(resizeAnimationHelper);
                 shrinked = true;
                 Log.i("Height Change:","true");
                 int width = albumArt.getWidth();
                 int height = 200;
                 RelativeLayout.LayoutParams parms = new RelativeLayout.LayoutParams(width,height);
                 albumArt.setLayoutParams(parms);
-            }
+  */          }
+
+
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            minVisibleItem = minVisibleItem > visibleItemCount ? visibleItemCount : minVisibleItem;
             prevFirstVisibleItem = firstVisibleItem;
 
+            this.visibleItemCount= visibleItemCount;
 
-
-            Log.i("First Visible Item" , ":"+firstVisibleItem);
+            if((prevFirstVisibleItem > 0 )) {
+                resizeAnimationHelper = new ResizeAnimationHelper(albumArt, albumArt.getHeight()-500, albumArt.getHeight());
+                resizeAnimationHelper.setDuration(1500);
+                albumArt.startAnimation(resizeAnimationHelper);
+            }
+                Log.i("First Visible Item" , ":"+firstVisibleItem);
             Log.i("Visible Item Count" , ":"+visibleItemCount);
             Log.i("Total Item Counte" , ":"+totalItemCount);
         }

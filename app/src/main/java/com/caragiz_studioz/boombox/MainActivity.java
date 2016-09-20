@@ -23,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         albumArt = (ImageView)findViewById(R.id.albumArt);
         albumName = (TextView)findViewById(R.id.albumName);
         GlobalResource.contentResolver = getContentResolver();
-
+        GlobalResource.setActivity(this);
         int permissionChk = ContextCompat.checkSelfPermission(this , Manifest.permission.READ_EXTERNAL_STORAGE);
         if(!checkPermission()){
                requestPermission();
@@ -72,11 +73,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             getTrackList();
             RecyclerView recyclerView = (RecyclerView)findViewById(R.id.cardList);
             recyclerView.hasFixedSize();
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            /*LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            */
+            StaggeredGridLayoutManager linearLayoutManager = new StaggeredGridLayoutManager(2 , StaggeredGridLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setAdapter(new RecycleViewAdapter());
-            recyclerView.addOnItemTouchListener(new CardOnClickListenerService(this , linearLayoutManager));
+            recyclerView.addOnItemTouchListener(new CardOnClickListenerService(this));
 
         }
 
@@ -168,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 recyclerView.setLayoutManager(linearLayoutManager);
                 recyclerView.setAdapter(new RecycleViewAdapter());
-                recyclerView.addOnItemTouchListener(new CardOnClickListenerService(this , linearLayoutManager));
+                recyclerView.addOnItemTouchListener(new CardOnClickListenerService(this));
 
             }
         }

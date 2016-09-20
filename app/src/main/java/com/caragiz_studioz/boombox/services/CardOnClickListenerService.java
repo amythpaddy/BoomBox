@@ -28,12 +28,10 @@ public class CardOnClickListenerService implements RecyclerView.OnItemTouchListe
     GestureDetector gestureDetector;
     ImageView albumArt;
     TextView albumName;
-    LinearLayoutManager linearLayoutManager;
 
-    public CardOnClickListenerService(Activity activity, LinearLayoutManager linearLayoutManager){
+    public CardOnClickListenerService(Activity activity){
 
         this.activity = activity;
-        this.linearLayoutManager = linearLayoutManager;
         gestureDetector = new GestureDetector(activity.getApplicationContext() , new GestureDetector.SimpleOnGestureListener(){
 
             @Override

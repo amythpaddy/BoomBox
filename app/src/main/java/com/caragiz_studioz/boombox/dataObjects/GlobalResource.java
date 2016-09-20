@@ -1,10 +1,15 @@
 package com.caragiz_studioz.boombox.dataObjects;
 
+import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.media.Image;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.caragiz_studioz.boombox.MainActivity;
+import com.caragiz_studioz.boombox.services.PlayerService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +27,7 @@ public class GlobalResource {
     private static int playListPosition = 0;
     private static List<TrackData> playList = new ArrayList<>();
     public static boolean isPaused;
+    private static Activity activity;
 
     public static TrackData getCurrentSong() {
         TrackData tempTrackData = playList.get(playListPosition);
@@ -43,6 +49,9 @@ public class GlobalResource {
 
     public static void setCurrentSong(TrackData trackData) {
         playList.add(trackData);
+        if(!GlobalResource.isPlaying && !GlobalResource.isPaused){
+            activity.startService(new Intent(activity, PlayerService.class));
+        }
     }
 
     public static boolean isListOver() {
@@ -52,6 +61,7 @@ public class GlobalResource {
     }
 
 
-
-
+    public static void setActivity(Activity activity) {
+        GlobalResource.activity = activity;
+    }
 }
